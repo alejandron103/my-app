@@ -60,7 +60,7 @@ export default function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn React pwa
         </a>
       </header>
     </div>
