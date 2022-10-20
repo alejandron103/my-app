@@ -49,7 +49,7 @@ export default function App() {
   return (
     <div className="App">
       <header className="App-header">
-        { isReadyForInstall && isIOS && <button onClick={downloadApp}>download</button> }
+        { isReadyForInstall && <button onClick={downloadApp}>download</button> }
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
