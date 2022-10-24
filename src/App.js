@@ -7,6 +7,8 @@ export default function App() {
   const [isIOS, setIsIOS] = useState(false)
 
   useEffect(() => {
+    let prompt;
+    let installButton = document.createElement('button');
     getOperatingSystem()
     window.addEventListener("beforeinstallprompt", (event) => {
       // Prevent the mini-infobar from appearing on mobile.
@@ -15,9 +17,14 @@ export default function App() {
       alert("👍", "beforeinstallprompt", event)
       // Stash the event so it can be triggered later.
       window.deferredPrompt = event;
+      prompt = event;
       // Remove the 'hidden' class from the install button container.
       setIsReadyForInstall(true);
+      
     });
+    installButton.addEventListener('click', function(){
+      prompt.prompt();
+   })
   }, []);
 
   async function downloadApp() {
@@ -50,7 +57,6 @@ export default function App() {
   return (
     <div className="App">
       <header className="App-header">
-        { <button onClick={downloadApp}>download</button> }
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
