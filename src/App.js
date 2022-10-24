@@ -8,6 +8,7 @@ export default function App() {
 
   useEffect(() => {
     let prompt;
+    alert("entro")
     let installButton = document.createElement('button');
     getOperatingSystem()
     window.addEventListener("beforeinstallprompt", (event) => {
