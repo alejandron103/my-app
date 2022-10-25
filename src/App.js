@@ -25,7 +25,6 @@ export default function App() {
   async function downloadApp() {
     console.log("👍", "butInstall-clicked");
     // const promptEvent = window.deferredPrompt;
-    alert("promtp",promptEvent)
     if (!promptEvent) {
       // The deferred prompt isn't available.
       console.log("oops, no prompt event guardado en window");
@@ -33,6 +32,7 @@ export default function App() {
     }
     // Show the install prompt.
     await promptEvent.prompt();
+    alert("promtp",promptEvent)
     // Log the result
     const result = await promptEvent.userChoice;
     console.log("👍", "userChoice", result);
