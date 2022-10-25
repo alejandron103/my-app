@@ -8,19 +8,11 @@ export default function App() {
 
   useEffect(() => {
     getOperatingSystem()
-    window.addEventListener("beforeinstallprompt", (event) => {
-      // Prevent the mini-infobar from appearing on mobile.
-      event.preventDefault();
-      console.log("👍", "beforeinstallprompt", event);
-      // Stash the event so it can be triggered later.
-      window.deferredPrompt = event;
-      // Remove the 'hidden' class from the install button container.
-      setIsReadyForInstall(true);
-      
-    });
+   
   }, []);
 
   async function downloadApp() {
+    mapInstallEvent()
     console.log("👍", "butInstall-clicked");
     const promptEvent = window.deferredPrompt;
     alert(promptEvent)
@@ -46,6 +38,19 @@ export default function App() {
     if (window.navigator.appVersion.indexOf('Mac') !== -1) { setIsIOS(true) }
     if (window.navigator.appVersion.indexOf('X11') !== -1) { setIsIOS(false) }
     if (window.navigator.appVersion.indexOf('Linux') !== -1) { setIsIOS(false) }
+  }
+
+  function mapInstallEvent(){
+    window.addEventListener("beforeinstallprompt", (event) => {
+      // Prevent the mini-infobar from appearing on mobile.
+      event.preventDefault();
+      console.log("👍", "beforeinstallprompt", event);
+      // Stash the event so it can be triggered later.
+      window.deferredPrompt = event;
+      // Remove the 'hidden' class from the install button container.
+      setIsReadyForInstall(true);
+      
+    });
   }
 
   return (
