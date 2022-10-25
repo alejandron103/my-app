@@ -31,6 +31,7 @@ export default function App() {
       return;
     }
     // Show the install prompt.
+    setIsReadyForInstall(true);
     await promptEvent.prompt();
     alert("promtp",promptEvent)
     // Log the result
@@ -40,7 +41,6 @@ export default function App() {
     // prompt() can only be called once.
     window.deferredPrompt = null;
     // Hide the install button.
-    setIsReadyForInstall(true);
   }
 
   // function getOperatingSystem() {
