@@ -4,11 +4,11 @@ import './App.css';
 
 export default function App() {
   const [isReadyForInstall, setIsReadyForInstall] = useState(false);
-  // const [isIOS, setIsIOS] = useState(false)
+  const [isIOS, setIsIOS] = useState(false)
   const [promptEvent, setPromptEvent] = useState({})
 
   useEffect(() => {
-    // getOperatingSystem()
+    isThisDeviceRunningiOS()
     window.addEventListener("beforeinstallprompt", (event) => {
       // Prevent the mini-infobar from appearing on mobile.
       event.preventDefault();
@@ -43,17 +43,23 @@ export default function App() {
     // Hide the install button.
   }
 
-  // function getOperatingSystem() {
-  //   if (window.navigator.appVersion.indexOf('Win') !== -1) { setIsIOS(false) }
-  //   if (window.navigator.appVersion.indexOf('Mac') !== -1) { setIsIOS(true) }
-  //   if (window.navigator.appVersion.indexOf('X11') !== -1) { setIsIOS(false) }
-  //   if (window.navigator.appVersion.indexOf('Linux') !== -1) { setIsIOS(false) }
-  // }
+  function isThisDeviceRunningiOS(){
+    if (['iPad Simulator', 'iPhone Simulator','iPod Simulator', 'iPad','iPhone','iPod'].includes(navigator.platform)){
+      setIsIOS(true);
+    }
+    // iPad on iOS 13  
+    else if (navigator.userAgent.includes("Mac") && "ontouchend" in document){
+      setIsIOS(true);
+    }   
+    else {
+      setIsIOS(false);
+    }
+  }
 
   return (
     <div className="App">
       <header className="App-header">
-      { <button onClick={downloadApp}>download</button> }
+      { isIOS && <button onClick={downloadApp}>download</button> }
       { isReadyForInstall && <button onClick={downloadApp}>ios</button> }
         <img src={logo} className="App-logo" alt="logo" />
         <p>
