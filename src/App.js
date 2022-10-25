@@ -12,7 +12,7 @@ export default function App() {
     window.addEventListener("beforeinstallprompt", (event) => {
       // Prevent the mini-infobar from appearing on mobile.
       event.preventDefault();
-      console.log("👍", "beforeinstallprompt", event);
+      alert("👍", "beforeinstallprompt", event);
       // Stash the event so it can be triggered later.
       window.deferredPrompt = event;
       setPromptEvent(event)
@@ -25,7 +25,7 @@ export default function App() {
   async function downloadApp() {
     console.log("👍", "butInstall-clicked");
     // const promptEvent = window.deferredPrompt;
-    console.log("promtp",promptEvent)
+    alert("promtp",promptEvent)
     if (!promptEvent) {
       // The deferred prompt isn't available.
       console.log("oops, no prompt event guardado en window");
