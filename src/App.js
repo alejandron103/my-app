@@ -23,6 +23,7 @@ export default function App() {
   async function downloadApp() {
     console.log("👍", "butInstall-clicked");
     const promptEvent = window.deferredPrompt;
+    alert(promptEvent)
     if (!promptEvent) {
       // The deferred prompt isn't available.
       console.log("oops, no prompt event guardado en window");
