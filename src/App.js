@@ -3,7 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 
 export default function App() {
-  // const [isReadyForInstall, setIsReadyForInstall] = useState(false);
+  const [isReadyForInstall, setIsReadyForInstall] = useState(false);
   // const [isIOS, setIsIOS] = useState(false)
   const [promptEvent, setPromptEvent] = useState({})
 
@@ -40,7 +40,7 @@ export default function App() {
     // prompt() can only be called once.
     window.deferredPrompt = null;
     // Hide the install button.
-    // setIsReadyForInstall(false);
+    setIsReadyForInstall(true);
   }
 
   // function getOperatingSystem() {
@@ -54,6 +54,7 @@ export default function App() {
     <div className="App">
       <header className="App-header">
       { <button onClick={downloadApp}>download</button> }
+      { isReadyForInstall && <button onClick={downloadApp}>ios</button> }
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
