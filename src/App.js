@@ -3,12 +3,12 @@ import logo from './logo.svg';
 import './App.css';
 
 export default function App() {
-  const [isReadyForInstall, setIsReadyForInstall] = useState(false);
-  const [isIOS, setIsIOS] = useState(false)
+  // const [isReadyForInstall, setIsReadyForInstall] = useState(false);
+  // const [isIOS, setIsIOS] = useState(false)
   const [promptEvent, setPromptEvent] = useState({})
 
   useEffect(() => {
-    getOperatingSystem()
+    // getOperatingSystem()
     window.addEventListener("beforeinstallprompt", (event) => {
       // Prevent the mini-infobar from appearing on mobile.
       event.preventDefault();
@@ -17,7 +17,7 @@ export default function App() {
       window.deferredPrompt = event;
       setPromptEvent(event)
       // Remove the 'hidden' class from the install button container.
-      setIsReadyForInstall(true);
+      // setIsReadyForInstall(true);
       
     });
   }, []);
@@ -40,15 +40,15 @@ export default function App() {
     // prompt() can only be called once.
     window.deferredPrompt = null;
     // Hide the install button.
-    setIsReadyForInstall(false);
+    // setIsReadyForInstall(false);
   }
 
-  function getOperatingSystem() {
-    if (window.navigator.appVersion.indexOf('Win') !== -1) { setIsIOS(false) }
-    if (window.navigator.appVersion.indexOf('Mac') !== -1) { setIsIOS(true) }
-    if (window.navigator.appVersion.indexOf('X11') !== -1) { setIsIOS(false) }
-    if (window.navigator.appVersion.indexOf('Linux') !== -1) { setIsIOS(false) }
-  }
+  // function getOperatingSystem() {
+  //   if (window.navigator.appVersion.indexOf('Win') !== -1) { setIsIOS(false) }
+  //   if (window.navigator.appVersion.indexOf('Mac') !== -1) { setIsIOS(true) }
+  //   if (window.navigator.appVersion.indexOf('X11') !== -1) { setIsIOS(false) }
+  //   if (window.navigator.appVersion.indexOf('Linux') !== -1) { setIsIOS(false) }
+  // }
 
   return (
     <div className="App">
