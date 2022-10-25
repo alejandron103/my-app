@@ -5,6 +5,7 @@ import './App.css';
 export default function App() {
   const [isReadyForInstall, setIsReadyForInstall] = useState(false);
   const [isIOS, setIsIOS] = useState(false)
+  const [promptEvent, setPromptEvent] = useState({})
 
   useEffect(() => {
     getOperatingSystem()
@@ -14,6 +15,7 @@ export default function App() {
       console.log("👍", "beforeinstallprompt", event);
       // Stash the event so it can be triggered later.
       window.deferredPrompt = event;
+      setPromptEvent(event)
       // Remove the 'hidden' class from the install button container.
       setIsReadyForInstall(true);
       
@@ -22,15 +24,15 @@ export default function App() {
 
   async function downloadApp() {
     console.log("👍", "butInstall-clicked");
-    const promptEvent = window.deferredPrompt;
-    alert(promptEvent)
+    // const promptEvent = window.deferredPrompt;
+    console.log("promtp",promptEvent)
     if (!promptEvent) {
       // The deferred prompt isn't available.
       console.log("oops, no prompt event guardado en window");
       return;
     }
     // Show the install prompt.
-    promptEvent.prompt();
+    await promptEvent.prompt();
     // Log the result
     const result = await promptEvent.userChoice;
     console.log("👍", "userChoice", result);
